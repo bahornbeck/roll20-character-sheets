@@ -2877,7 +2877,7 @@
             <input type="number" name="attr_specialized" value=0 \>
             <input type="number" name="attr_tnmods" value=0 \>
             <input name="attr_miscnotes" type="text" hidden=true value="Reach Bonus: ">
-            <div><button class="attack-dice" type="action" name="act_attack" title="Melee Attack"></button></div>
+            <div><button class="attack-dice" type="action" name="act_attack" id="repeatingmelee" title="Melee Attack"></button></div>
             <div><input name="attr_notes" type="text"></input></div>
         </div>
         <div class="table-bottom" />
@@ -6014,38 +6014,55 @@ on('clicked:matrixattack', (info) => {
 		var defaultmsg="";
 		var defaultpen=0;
 		var myspec=0;
-		const meleeattrs=["unarmed", "unarmed-specialized", "cyberimplant", "weaponfocus-equipped", "weaponfocus-damage", "gyro-on"];
+		var meleeattrs=["character_name","strength_max", "martialarts", "attackdamage", "attackpower", "reaction_max", "charisma_max", "unarmed", "unarmed-specialized", "cyberimplant", "weaponfocus-equipped", "weaponfocus-damage", "gyro-on", "armor-quickness-pen", "unarmed-specialized", "unarmed-miscmod", "weaponfocus-specialized", "metatype"];
+		if ( mymode == "repeatingmelee" ) {
+			var source=info['sourceAttribute'].split('_');
+			var sourceattr=source.pop();
+			var myrepeat=source.join('_').concat('_');
+			const repeatatts=["damage", "power", "name", "skill", "reach", "specialized", "notes", "tnmods"] ;
+			repeatatts.forEach(myatt=>{
+				meleeattrs.push(myrepeat.concat(myatt));
+			});
+		};
 		getAttrs(meleeattrs, function(myval) {
+			const strmax=myval["strength_max"];
+			const attackdamage=myval["attackdamage"];
+			const attackpower=myval["attackpower"];
+			const myname=myval["character-name"];
+			var mynotes="";
+			var myspec=0;
+			var mytnmod=0;
+			var myreach="@{meleereach|max}";
+			var gyropenroll="";
+			var gyropen=0;
+			if (( myval["gyro-on"] == 1 ) && ( mymode != "astralattack" )) {
+			   	gyropen=4;
+				gyropenroll = "{{gyropen=" + gyropen + "}}";
+			}
 			if ( mymode == "astralattack" ) {
 				pool="astralpool";
 				myweapon="Astral Attack";
 				var myskill="@{astralcombat}";
-				myskill="@{astralcombat} + @{weaponfocus-force}"
 				var mydamage="M"
 				if ( myval["weaponfocus-equipped"]=="on" ) { 
-					myskill += "( " + myskill + " +  @{weaponfocus-force} )"
+					myskill = "( " + myskill + " +  @{weaponfocus-force} )"
+					myspec=myval["weaponfocus-specialized"];
 					mydamage=myval["weaponfocus-damage"];
 				}
-				mypower="@{charisma|max}";
+				mypower=myval["charisma_max"];
 				focus="{{weaponfocus=@{weaponfocus-name}}}"
 				force="{{focusforce=@{weaponfocus-force}}}"
-			}
-			else if ( mymode == "unarmedattack" ) {
-			   var gyropen=0;
-			   var gyropenroll="";
-			   if ( myval["gyro-on"] == 1 ) {
-			   	gyropen=4;
-				gyropenroll = "{{gyropen=" + gyropen + "}}";
-			   }
-			   mydamage=myval["@{attackdamage}"];
+			} else if ( mymode == "unarmedattack" ) {
+			   mydamage=attackdamage;
 			   myskill=myval["unarmed"];
 			   myspec=myval["unarmed-specialized"];
-			   myweapon="@{martialarts}";
-			   mypower="@{strength|max}";
+			   mytnmod=myval["unarmed-miscmods"];
+			   myweapon=myval["martialarts"];
+			   mypower=strmax;
 			   if ( myval["unarmed"] == 0 ) {
 			   	console.log('unarmed is 0');
 				if (myval["cyberimplant"] == 0) { 
-					myskill="@{strength|max}";
+					myskill=strmax;
 					defaultpen=4;
 					pool="false";
 					var defaultmsg="{{default=Skill Defaulted to Strength Attribute with +" + defaultpen + " to hit}}";
@@ -6055,20 +6072,35 @@ on('clicked:matrixattack', (info) => {
 					var defaultmsg="{{default=Skill Defaulted to Cyber Implant skill with +" + defaultpen + " to hit}}";
 				}
 			   }
-			}
-			else if ( mymode == "critterattack" ) {
-				myskill="@{reaction|max}";
-				mydamage="@{attackdamage}";
-				mypower="@{attackpower}";
+			} else if ( mymode == "critterattack" ) {
+				myskill=myval["reaction_max"];
+				mydamage=atackdmg;
+				mypower=attackpower;
 				myweapon="Attack";
-			} else {
-				console.log(' id ' + mymode + ' does not match');
+			} else if (mymode == "repeatingmelee" ) {
+				console.log('repeating melee');
+				mynotes=myval[myrepeat.concat("mynotes")];
+				myweapon=myval[myrepeat.concat("name")];
+				mydamage=myval[myrepeat.concat("damage")];
+				mypower=myval[myrepeat.concat("power")];
+				myskill=myval[myrepeat.concat("skill")];
+				myspec=myval[myrepeat.concat("specialized")];
+				mytnmod=myval[myrepeat.concat("tnmods")];
+				if ( myval["metatype"] == "Troll" )  myreach=myval[myrepeat.concat("reach")] + 1;
+				else myreach=myval[myrepeat.concat("reach")];
+			} else { 
+				console.log(' id ' + mymode + ' does not match'); 
 			}
-			var calcTN="4 + @{meleeTN} + ( ( @{target|Target|meleereach|max} - @{meleereach|max} ) * ?{Use Reach Modifier?} ) + " + defaultpen + " + " + gyropen;
+			var calcTN="4 + @{meleeTN} + ( ( @{target|Target|meleereach|max} - " + myreach + " ) * ?{Use Reach Modifier?} ) + " + mytnmod + " + " + defaultpen + " + " + gyropen;
 			var calcDice=myskill + " + " + myspec ;
-                        var myroll="&{template:attack}{{myname=@{character_name}}}{{target=@{target|Target|token_name}}}{{weapondamage="
+                        var myroll="&{template:attack}{{myname=" + myname + "}}{{target=@{target|Target|token_name}}}{{weapondamage=" + mydamage + "}}{{weaponpower=[[" + mypower + "]]}}"
+			if ( quicknesslinked.includes(myskill) ) {
+				console.log('quick pen');
+				armorpen=myval["armor-quickness-pen"];
+				console.log(armorpen);
+				myroll+= "{{armorpen=@{armor-quickness-pen}}}";
+			}
 			console.log('pool name is ' + pool);
-			myroll+= mydamage + "}}{{weaponpower=[[" + mypower + "]]}}"
 			if ( pool == "combatpool" ) {
 				calcDice += " + ?{Combat Pool Dice}"
 				myroll += "{{pooldice=[[?{Combat Pool Dice|0}]]}}"
@@ -6080,20 +6112,30 @@ on('clicked:matrixattack', (info) => {
 			} else  {
 				myroll += "{{pooldice=[[0]]}}"
 			}
-			myroll+= "{{charreach=[[@{meleereach|max}]]}}{{targetreach=[[@{target|Target|meleereach|max}]]}}"
+			myroll+= "{{charreach=[[" + myreach + "]]}}{{targetreach=[[@{target|Target|meleereach|max}]]}}"
 			myroll+="{{weaponname=" + myweapon + "}}{{reachmod=[[?{Use Reach Modifier?|Yes,1|No,0}]]}}"
 			myroll+="{{reachbonus=[[(@{target|Target|meleereach|max} - @{meleereach|max} ) * ?{Use Reach Modifier?}]]}}"
 			myroll+="{{rolldice=[[" + calcDice + "]]}}{{targetnumber=[[" + calcTN + "]]}}"
 			myroll+="{{attacktest=[[ [[" + calcDice + "]]d6>[[ {2,[[ " + calcTN + "]]}kh1]]!!  ]] }}" 
+			myroll+="{{senddata=[[0]]}}";
 			myroll+=defaultmsg;
 			myroll+=gyropenroll;
 			console.log(myroll);
+		 	payload={		
+				attacker: myname,
+				strength: strmax,
+				power: mypower,
+				wdmg: mydamage
+			};
                 	startRoll(myroll, (results) => {
 				var reachmodtxt="Reach Bonus Applied" ;
 				if ( results.results.reachmod.result == 0 ) reachmodtxt="Reach Bonus Not Applied";
 				if ( pool != "none" ) updatepoolused(pool, results.results.pooldice.result );
+				payload["reachmode"]=results.results.reachmod.result;
+				attacktest["reachmode"]=results.results.attacktest.result;
 				finishRoll( results.rollId, {
 					reachmod: reachmodtxt,
+					senddata: rollEscape.escape(payload),
 				});
 
 			});
