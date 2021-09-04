@@ -87,6 +87,7 @@
 <div class="hidden-constants">
     <input type="hidden" name="attr_iconstatuscode" value=0>
     <input type='hidden' name='attr_gyro-on' value=0 />
+    <input type='hidden' name='attr_armor-on' value=0 />
     <input type='hidden' name='attr_wp-char' value="(@{stun_pen} + @{wound_pen})" />
     <input type='hidden' name='attr_wp-matrix' value="(@{stun_pen} + @{wound_pen} + @{matrix-penalty})" />
     <input type='hidden' name='attr_wp-vehicle'
@@ -4432,7 +4433,6 @@ buttonlist.forEach(button => {
 	}
     };
 
-
    on("change:repeating_rangedweapons:type", function() {
    	console.log('updating range based on weapon type');
 	getAttrs(["repeating_rangedweapons_type", "strength_max"], function(myval) {
@@ -5291,25 +5291,25 @@ on('clicked:matrixattack', (info) => {
 		adps: { armor: "Math.floor(ballistic * 0.5)", av: 0, power: 0, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 0.5, knockdown: 1, amsg: "" },
 		explosive: { armor: "ballistic", av: 0, power: 1, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 1, knockdown: 1, amsg: "" },
 		explosive2: { armor: "ballistic", av: 0, power: 2, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 1, knockdown: 1, amsg: "" },
-		flechette: { armor: "(Math.max(ballistic, (impact * 2)))", av: -0.5, power: 0, rpower:0, dmg:0, rdmg: "(dermalarmor==1)? 0 :((ballistic + impact) ==0)? 1 : 0;", recoil: 1, barrier: 2, knockdown: 1, amsg: "Final Damage Level depends on Armor" },
+		flechette: { armor: "(Math.max(ballistic, (impact * 2)))", av: -0.5, power: 0, rpower:0, dmg:0, rdmg: "(armoron == 0)? 1 : 0;", recoil: 1, barrier: 2, knockdown: 1, amsg: "Final Damage Level depends on Armor" },
 		gel: { armor: "impact", av: 0, power: -2, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 1, knockdown: 2, amsg: "" },
 		tracer: { armor: "ballistic", av: 0, power: 0, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 1, knockdown: 1, amsg: "" },
 		av: { armor: "Math.floor(ballistic * 0.5)", av: 1, power: 0, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 0.5, knockdown: 1, amsg: "" },
 		capsule: { armor: "impact", av: 0, power: -2, rpower:0, dmg: 0, rdmg:0, recoil: 1, barrier: 1, knockdown: 1, amsg: "" },
-		glazer: { armor: "Math.max((ballistic * 2), (impact * 2))", av: -0.5, power: 2, rpower:0, dmg:0, rdmg: "((ballistic + impact) ==0)? 1 : 0;", recoil: 1, barrier: 2, knockdown: 1, amsg: "Final Damage Level depends on Armor" },
+		glazer: { armor: "Math.max((ballistic * 2), (impact * 2))", av: -0.5, power: 2, rpower:0, dmg:0, rdmg: "( armoron == 0)? 1 : 0;", recoil: 1, barrier: 2, knockdown: 1, amsg: "Final Damage Level depends on Armor" },
 		hic: { armor: "Math.max(ballistic,impact)", av: 0, power: "(range==6)? -1 : (range==9)? -1", rpower:0, dmg: 0, rdmg:0, recoil: 2, barrier: 1, knockdown: 1, amsg: "" },
 		hpoint: { armor: "ballistic + impact", av: 0, power:0, rpower: "((ballistic + impact ==0)? 3 : 1", dmg: 0, rdmg:0, recoil: 2, barrier: 1, knockdown: 1, amsg: "Final Power Rating depends on Armor" },
 		incendiary: { armor: "ballistic", av: 0, power: 0, rpower: 0, dmg: 0, rdmg:0, recoil: 1, barrier: 1, knockdown: 1, amsg: "" },
-		mercury: { armor: "Math.max((ballistic * 2), (impact * 2))", av: -0.5, power: 0, rpower: 0, dmg: 0, rdmg: "((ballistic + impact) ==0)? 1 : 0;", recoil: 1, barrier: 2, knockdown: 1, amsg: "Final Damage Level depends on Armor" },
+		mercury: { armor: "Math.max((ballistic * 2), (impact * 2))", av: -0.5, power: 0, rpower: 0, dmg: 0, rdmg: "( armoron == 0)? 1 : 0;", recoil: 1, barrier: 2, knockdown: 1, amsg: "Final Damage Level depends on Armor" },
 		tracker: { armor: "ballistic", av: 0, power: 0, rpower: 0, dmg: 0, rdmg: 0, recoil: 1, barrier: 1, knockdown: 1, amsg: "" }
 	}
 	
    	const resistdmg = function (myid, mods) {
-	   atts=["ballistic", "impact", "dermal-armor"];
+	   atts=["ballistic", "impact", "armor-on"];
 	   getAttrs(atts, function (myval) {
 	   	const ballistic=myval["ballistic"];
 	   	const impact=myval["impact"];
-	   	const dermalarmor=myval["dermal-armor"];
+	   	const armoron=myval["armor-on"];
 		var wdmg;
 		var dmgcode=0;
 		var weapondmg="none";
@@ -7649,7 +7649,7 @@ on("change: change:repeating_meleeweapons:reach", function(eventinfo){
     });
 });
 
-on("change:repeating_armor:equipped change:repeating_armor:ballistic change:repeating_armor:impact", function(eventinfo){
+on("change:dermal-armor change:repeating_armor:equipped change:repeating_armor:ballistic change:repeating_armor:impact", function(eventinfo){
 	var sets={};
 	var ballistic=0;
 	var impact=0;
@@ -7657,12 +7657,13 @@ on("change:repeating_armor:equipped change:repeating_armor:ballistic change:repe
 	fields=["equipped", "ballistic", "impact", "slot"];
 	getSectionIDs("repeating_armor", idArray => {
 		var attrArray = idArray.reduce((m, id) => [ ...m, ...(fields.map(field => `repeating_armor_${id}_${field}`))], []); 
-		attrArray.push("quickness_max");
+		attrArray.push("quickness_max","dermal-armor");
 		getAttrs(attrArray, function(myval) {
 			console.log('myval');
 			console.log(myval);
 			console.log(idArray);
 			const myquick=parseInt(myval["quickness_max"]);
+			const mydermal=parseInt(myval["dermal-armor"]);
 			idArray.forEach(m => {
 				if (myval["repeating_armor_" + m + "_equipped"] == "on" ) {
 					let bal=myval["repeating_armor_" + m + "_slot"] + "-bal";
@@ -7693,6 +7694,8 @@ on("change:repeating_armor:equipped change:repeating_armor:ballistic change:repe
 			let combatpen= -1 * (Math.floor((ballover + impactover) / 2 ));
 			if ( gyro_bal > 0 ) sets["gyro-on"]=1;
 			else sets["gyro-on"]=0;
+			if (((ballistic + impact) >= 1 ) || (mydermal == 1)) sets["armor-on"]=1;
+			else sets["armor-on"]=0;
 			sets["ballistic"]=ballistic + ware_bal + gyro_bal;
 			sets["impact"]=impact + ware_im + gyro_bal;;
 			sets["armor-quickness-pen"]=ballover;
