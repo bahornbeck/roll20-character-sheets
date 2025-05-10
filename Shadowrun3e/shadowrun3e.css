@@ -189,6 +189,11 @@ details {
     height: 34px;
 }
 
+.toggle-button {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
 
 /* Hide default HTML checkbox */
 
@@ -289,6 +294,10 @@ input:checked+.slider:before {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 5px;
     color: black;
+}
+
+.hidden {
+    display: none;
 }
 
 .hidden-constants {
@@ -434,13 +443,7 @@ input:checked+.slider:before {
     display: grid;
     align-items: center;
     grid-template-columns: 165px 40px 10px 50px 35px 55px 35px 55px 35px 315px;
-    background-color: rgba(192,192,192,.9);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 2px;
-    border-bottom: 2px solid #000000;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
+
 }
 
 .conditionstatus2-attrs {
@@ -520,10 +523,8 @@ input:checked+.slider:before {
 .vehicle-ecm-tab,
 .matrix,
 .frame,
-.sheet-character,
 .sheet-test1,
 .sheet-magic,
-.sheet-decks,
 .sheet-gear,
 .sheet-vehicles,
 .sheet-combat,
@@ -724,18 +725,7 @@ input:checked+.slider:before {
 .sheet-tabstoggle[value="vehicle-combat-tab"]~div.vehicle-combat-tab,
 .sheet-tabstoggle[value="vehicle-notes-tab"]~div.vehicle-notes-tab,
 .sheet-tabstoggle[value="vehicle-attr-tab"]~div.vehicle-attr-tab,
-.sheet-tabstoggle[value="vehicle-ecm-tab"]~div.vehicle-ecm-tab,
-.sheet-tabstoggle[value="character"]~div.sheet-character,
-.sheet-tabstoggle[value="decks"]~div.sheet-decks,
-.sheet-tabstoggle[value="magic"]~div.sheet-magic,
-.sheet-tabstoggle[value="gear"]~div.sheet-gear,
-.sheet-tabstoggle[value="vehicles"]~div.sheet-vehicles,
-.sheet-tabstoggle[value="combat"]~div.sheet-combat,
-.sheet-tabstoggle[value="rigger"]~div.sheet-rigger,
-.sheet-tabstoggle[value="cyberware"]~div.sheet-cyberware,
-.sheet-tabstoggle[value="karma"]~div.sheet-karma,
-.sheet-tabstoggle[value="contacts"]~div.sheet-contacts,
-.sheet-tabstoggle[value="skills"]~div.sheet-skills {
+.sheet-tabstoggle[value="vehicle-ecm-tab"]~div.vehicle-ecm-tab {
     display: block;
 }
 
@@ -743,19 +733,7 @@ input:checked+.slider:before {
 .sheet-tabstoggle[value="vehicle-combat-tab"]~button.vehicle-combat-button,
 .sheet-tabstoggle[value="vehicle-notes-tab"]~button.vehicle-notes-button,
 .sheet-tabstoggle[value="vehicle-attr-tab"]~button.vehicle-attr-button,
-.sheet-tabstoggle[value="vehicle-ecm-tab"]~button.vehicle-ecm-button,
-.sheet-tabstoggle[value="character"]~button.charbutton,
-.sheet-tabstoggle[value="skills"]~button.skillsbutton,
-.sheet-tabstoggle[value="decks"]~button.decksbutton,
-.sheet-tabstoggle[value="magic"]~button.magicbutton,
-.sheet-tabstoggle[value="magic"]~button.adeptbutton,
-.sheet-tabstoggle[value="gear"]~button.gearbutton,
-.sheet-tabstoggle[value="rigger"]~button.riggerbutton,
-.sheet-tabstoggle[value="vehicles"]~button.vehiclesbutton,
-.sheet-tabstoggle[value="cyberware"]~button.cyberwarebutton,
-.sheet-tabstoggle[value="karma"]~button.karmabutton,
-.sheet-tabstoggle[value="contacts"]~button.contactsbutton,
-.sheet-tabstoggle[value="combat"]~button.combatbutton {
+.sheet-tabstoggle[value="vehicle-ecm-tab"]~button.vehicle-ecm-button {
     background-color: red;
 }
 
@@ -780,19 +758,7 @@ input:checked+.slider:before {
 .vehicle-attr-button,
 .vehicle-notes-button,
 .vehicle-ecm-button,
-.vehicle-combat-button,
-.charbutton,
-.skillsbutton,
-.decksbutton,
-.magicbutton,
-.adeptbutton,
-.gearbutton,
-.riggerbutton,
-.vehiclesbutton,
-.contactsbutton,
-.cyberwarebutton,
-.karmabutton,
-.combatbutton {
+.vehicle-combat-button {
     display: inline-block;
     background-color: black;
     /* Green */
@@ -809,25 +775,13 @@ input:checked+.slider:before {
 .vehicle-attr-button:hover,
 .vehicle-notes-button:hover,
 .vehicle-ecm-button:hover,
-.vehicle-combat-button:hover,
-.charbutton:hover,
-.contactsbutton:hover,
-.cyberwarebutton:hover,
-.skillsbutton:hover,
-.decksbutton:hover,
-.magicbutton:hover,
-.adeptbutton:hover,
-.gearbutton:hover,
-.riggerbutton:hover,
-.vehiclesbutton:hover,
-.combatbutton:hover {
+.vehicle-combat-button:hover {
    background-color: white;
    color: black;
 }
 
 .spirit-magic-tabs,
 .reaction-spirit,
-.alwaysdisplayed-buttons,
 .critters-only,
 .spirits-only,
 .spirittype-info,
@@ -899,15 +853,13 @@ input:checked+.slider:before {
 }
 
 
-.buttontoggle[value="Character"]~div.characters-npcs,
-.buttontoggle[value="Character"]~div.alwaysdisplayed-buttons,
-.buttontoggle[value="NPC"]~div.characters-npcs,
-.buttontoggle[value="NPC"]~div.alwaysdisplayed-buttons,
+.buttontoggle[value="Character"]~header.characters-npcs,
+.buttontoggle[value="NPC"]~header.characters-npcs,
 .buttontoggle[value="Spirit"]~div.sheet-spirit,
 .buttontoggle[value="Spirit"]~div.spirits-only,
-.buttontoggle[value="Spirit"]~div.characters-npcs,
+.buttontoggle[value="Spirit"]~header.characters-npcs,
 .buttontoggle[value="Critter"]~div.sheet-critter,
-.buttontoggle[value="Critter"]~div.characters-npcs,
+.buttontoggle[value="Critter"]~header.characters-npcs,
 .buttontoggle[value="Critter"]~div.critters-only,
 .buttontoggle[value="Vehicle"]~div.vehicles,
 .buttontoggle[value="Drone"]~div.vehicles,
@@ -1054,6 +1006,7 @@ min-width: 0;
 #sensorexp,
 #vehiclesensor,
 .d6-button,
+.pictos-toggle,
 .pictos-button,
 .charsheet button[type=action].explosive-dice,
 .charsheet button[type=action].reload-dice,
@@ -1065,7 +1018,8 @@ min-width: 0;
 	border-radius: 4px;
 	border-bottom-color: #bbb;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-	line-height: inherit;
+	line-height: 25px;
+    text-align: center;
 	background-color: #f5f5f5;
 }
 .charsheet button[type=action].explosive-dice,
@@ -1097,6 +1051,11 @@ min-width: 0;
     content: 'F ';
 }
 
+.pictos-toggle:hover {
+    background-color: black;
+    border: 1px solid white;
+}
+
 #sensorexp,
 #vehiclesensor,
 .charsheet button[type=action].pictos-button:hover,
@@ -1122,6 +1081,7 @@ min-width: 0;
 }
 #sensorexp,
 #vehiclesensor,
+.pictos-toggle,
 .pictos-button {
     font-family: 'Pictos';
 }
