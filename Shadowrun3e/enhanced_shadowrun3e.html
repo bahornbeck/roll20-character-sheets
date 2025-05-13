@@ -28,7 +28,7 @@
 
         </div>
         <input type='hidden' class='buttontoggle' name='attr_sheettype' value="Character" />
-        <div class="metatype-info">
+        <div class="metatype-info" data-metainfo="metahuman">
             <div class="SRH5" data-i18n="metatype">MetaType:</div><select name="attr_metatype" class="largeselect">
                 <option value="Human" data-i18n="human" selected>Human</option>
                 <option value="Dwarf" data-i18n="dwarf">Dwarf</option>
@@ -54,7 +54,7 @@
             <div class="SRH5" data-i18n="height">Height:</div> <input type='number' name="attr_height">
             <div class="SRH5" data-i18n="weight">Weight:</div> <input type='number' name="attr_weight" step='0.01'>
         </div>
-        <div class="spirittype-info">
+        <div class="spirittype-info hidden" data-metainfo="spirit">
             <div class="SRH5" data-i18n="spirit-type">Spirit Type: </div>
             <select id="spirit-type" name="attr_spirit-type" class="mediumselect2">
                 <option value="watcher" data-i18n="watcher">Watcher</option>
@@ -166,47 +166,53 @@
 
 </div>
 
-<input type='hidden' class='buttontoggle' name='attr_sheettype' value="Character" />
 <header class="characters-npcs">
-    <input type='hidden' class='buttontoggle' name='attr_sheettype' value="Character" />
-    <div class="alwaysdisplayed-buttons hidden" data-tab="Character-sheet">
-        <div class="switchSheet" data-tab="attributes-button" data-i18n="attributes">Attributes</div>
-        <div class="switchSheet" data-tab="skills-button" data-i18n="skills">Skills</div>
-        <div class="switchSheet" data-tab="magic-button" data-i18n="magic">Magic</div>
-        <div class="switchSheet" data-tab="decks-button" data-i18n="decking">Decking</div>
-        <div class="switchSheet" data-tab="gear-button" data-i18n="gear">Gear</div>
-        <div class="switchSheet" data-tab="rigger-button" data-i18n="rigger">Rigger</div>
-        <div class="switchSheet" data-tab="combat-button" data-i18n="combat">Combat</div>
-        <div class="switchSheet" data-tab="cyberware-button" data-i18n="cyberware">Cyberware</div>
-        <div class="switchSheet" data-tab="contacts-button" data-i18n="contacts-lifesytle">Contacts/Lifestyle</div>
-        <div class="switchSheet" data-tab="karma-button" data-i18n="karma">Karma</div>
+    <div class="character-buttons hidden" data-tab="Character-sheet">
+        <div class="toggleTab" data-target="data-sheet" data-value="attributes" data-i18n="attributes">Attributes
+        </div>
+        <div class="toggleTab" data-target="data-sheet" data-value="skills" data-i18n="skills">Skills</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="magic" data-i18n="magic">Magic</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="decks" data-i18n="decking">Decking</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="gear" data-i18n="gear">Gear</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="rigger" data-i18n="rigger">Rigger</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="combat" data-i18n="combat">Combat</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="cyberware" data-i18n="cyberware">Cyberware</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="contacts" data-i18n="contacts-lifesytle">
+            Contacts/Lifestyle</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="karma" data-i18n="karma">Karma</div>
     </div>
-    <div class="critters-only critters-buttons hidden" data-tab="Critter-sheet">
-        <div class="switchSheet" data-tab="attributes-button" data-i18n="attributes">Attributes</div>
-        <div class="switchSheet" data-tab="combat-button" data-i18n="combat">Combat</div>
-        <div class="switchSheet" data-tab="powers-button" data-i18n="powers">Powers</div>
-        <div class="switchSheet" data-tab="magic-button" data-i18n="magic">Magic</div>
-        <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab' value="character" />
+    <div class="critters-buttons hidden" data-tab="Critter-sheet">
+        <div class="toggleTab" data-target="data-sheet" data-value="attributes" data-i18n="attributes">
+            Attributes</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="combat" data-i18n="combat">Combat</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="powers" data-i18n="powers">Powers</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="magic" data-i18n="magic">Magic</div>
     </div>
-    <div class="spirits-only spirits-buttons hidden" data-tab="Spirit-sheet">
-        <div class="switchSheet" data-tab="attributes-button" data-i18n="attributes">Attributes</div>
-        <div class="switchSheet" data-tab="powers-button" data-i18n="powers">Powers</div>
-        <div class="switchSheet" data-tab="magic-button" data-i18n="magic">Magic</div>
-        <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab' value="character" />
+    <div class="spirits-buttons hidden" data-tab="Spirit-sheet">
+        <div class="toggleTab" data-target="data-sheet" data-value="attributes" data-i18n="attributes">
+            Attributes</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="powers" data-i18n="powers">Powers</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="magic" data-i18n="magic">Magic</div>
     </div>
-     <div class="vehicle-buttons hidden" data-tab="Vehicle-sheet">
-            <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab' />
-            <button class="vehicle-attr-button" type="action" name="act_vehicle-attr-tab"
-                data-i18n="drone-attributes">Drone Attributes</button>
-            <button class="vehicle-combat-button" type="action" name="act_vehicle-combat-tab"
-                data-i18n="drone-combat">Drone Combat</button>
-            <button class="vehicle-notes-button" type="action" name="act_vehicle-notes-tab"
-                data-i18n="drone-notes">Drone Notes</button>
-            <button class="vehicle-ecm-button" type="action" name="act_vehicle-ecm-tab"
-                data-i18n="ecm-flux">ECM/FLUX</button>
+    <div class="vehicle-buttons hidden" data-tab="Vehicle-sheet">
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-attr" data-i18n="vehicle-attributes">
+            Vehicle Attributes</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-combat" data-i18n="vehicle-combat">Vehicle
+            Combat</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-notes" data-i18n="vehicle-notes">Vehicle
+            Notes</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-ecm" data-i18n="ecm-flux">ECM/FLUX</div>
+    </div>
+    <div class="drone-buttons hidden" data-tab="Vehicle-sheet">
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-attr" data-i18n="drone-attributes">Drone
+            Attributes</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-combat" data-i18n="drone-combat">Drone
+            Combat</div>
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-notes" data-i18n="drone-notes">Drone Notes
+        </div>
+        <div class="toggleTab" data-target="data-sheet" data-value="vehicle-ecm" data-i18n="ecm-flux">ECM/FLUX</div>
     </div>
     <div class="alwaysdisplayed">
-        <input type='hidden' class='buttontoggle' name='attr_sheettype' value="Character" />
         <div class="organism-condition">
             <div class="SRH3" data-i18n="condition-monitor">Condition Monitor</div>
             <br>
@@ -308,19 +314,18 @@
         <div class="conditionstatus2">
             <div data-i18n="physical-damage-overflow">Physical Damage Overflow:</div>
             <div><input type="number" name="attr_overflow" value=0 min=0 /></div>
-            <input type='hidden' class='buttontoggle' name='attr_sheettype' value="Character" />
             <div></div>
-            <div class="normal-init text-mid" data-i18n="initiative-natural">Init Nat.</div>
-            <div class="normal-init"><button type="action" name="act_init" class="d6-button"
+            <div class="init-normal text-mid" data-i18n="initiative-natural">Init Nat.</div>
+            <div class="init-normal"><button type="action" name="act_init" class="d6-button"
                     title="Unaugmented Initiative" id="natrualinit">L</button></div>
-            <div class="normal-init text-mid" data-i18n="initiative-augmented">Init. Aug.</div>
-            <div class="normal-init"><button type="action" name="act_init" class="d6-button"
+            <div class="init-normal text-mid" data-i18n="initiative-augmented">Init. Aug.</div>
+            <div class="init-normal"><button type="action" name="act_init" class="d6-button"
                     title="Augmented Initiative" id="augmentedinit">L</button></div>
-            <div class="spirits-only text-mid" data-i18n="initiative-physical">Init. Phy.</div>
-            <div class="spirits-only"><button type="action" name="act_init" class="d6-button"
-                    title="Physical Initiative" id="spiritinit">L</button></div>
-            <div class="spirits-only text-mid" data-i18n="initiative-astral">Init. Astr. </div>
-            <div class="spirits-only"><button type="action" name="act_init" class="d6-button" title="Astral Initiative"
+            <div class="init-spirit text-mid" data-i18n="initiative-physical">Init. Phy.</div>
+            <div class="init-spirit"><button type="action" name="act_init" class="d6-button" title="Physical Initiative"
+                    id="spiritinit">L</button></div>
+            <div class="init-spirit text-mid" data-i18n="initiative-astral">Init. Astr. </div>
+            <div class="init-spirit"><button type="action" name="act_init" class="d6-button" title="Astral Initiative"
                     id="astralinit">L</button></div>
             <div class="text-mid" data-i18n="end-turn">End Turn</div>
             <div><button type="action" name="act_endturn" class="d6-button" title="End Combat Turn"
@@ -364,20 +369,12 @@
                     title="Resist Damage with Impact Armor" id="impact">L</button> </div>
             <input type='hidden' class='buttontoggle' name='attr_sheettype' />
             <div class="manual-gunnery">
+                <input type="hidden" class="manual-gunnery-tn" name="attr_manualgunneryTN" value=0>
+                <div class="toggleOption" data-option="data-gunnery" data-i18n="show-manual-gunnery">Show Manual Gunnery<span class="number-span"
+                        name="attr_manualgunneryTN"></span></div>
+                <div class="toggleOption hidden" data-option="data-gunnery" data-i18n="hide-manual-gunnery">Hide Manual Gunnery<span class="number-span"
+                        name="attr_manualgunneryTN"></span></div>
                 <input type='hidden' class='gunnery-switch' name='attr_gunneryswitch' value="show" />
-
-                <div class="manual-gunnery-show">
-                    <input type="hidden" class="manual-gunnery-tn" name="attr_manualgunneryTN" value=0>
-                    <button class="gunneryswitch" type="action" name="act_gunneryswitch"
-                        data-i18n="show-manual-gunnery">Show Manual Gunnery</button><span class="number-span"
-                        name="attr_manualgunneryTN"></span>
-                </div>
-                <div class="manual-gunnery-hide">
-                    <input type="hidden" class="manual-gunnery-tn" name="attr_manualgunneryTN" value=0>
-                    <button class="gunneryswitch" type="action" name="act_gunneryswitch"
-                        data-i18n="hide-manual-gunnery">Hide Manual Gunnery</button><span class="number-span"
-                        name="attr_manualgunneryTN"></span>
-                </div>
             </div>
         </div>
         <div class="combat-conditions">
@@ -455,7 +452,7 @@
         </div>
         <input type='hidden' class='gunnery-switch' name='attr_gunneryswitch' value="show" />
         <input type='hidden' class='buttontoggle' name='attr_sheettype' />
-        <div class="manual-gunnery-mods">
+        <div class="manual-gunnery-mods hidden" data-option="data-gunnery">
             <div data-i18n="relative-motion">Relative Motion</div>
             <div data-i18n="relative-speed">Relative Speed</div>
             <div data-i18n="maneuver-score">Maneuver Score</div>
@@ -519,285 +516,278 @@
     </div>
 </header>
 
-<input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab' value='character' />
-<section class='attributes hidden' data-tab="attributes">
-    <div class="attributes-init">
-        <input type='hidden' class='buttontoggle' name='attr_sheettype' />
-        <div>
-            <div class="SRH3" data-i18n="attributes">Attributes</div>
-            <div class="char-attributes">
-                <header class="table-top-left" data-i18n="attribute">Attribute</header>
-                <header class="table-top-mid" data-i18n="base">Base</header>
-                <header class="table-top-mid" data-i18n="mods">Mods</header>
-                <header class="table-top-right" data-i18n="final">Final</header>
-                <header class="table-item-left" data-i18n="body">Body</header>
-                <div class="table-item">
-                    <input type="number" name="attr_body" value=1 min=1 style='width:39px;' />
-                    <div><button data-i18n-title="body-test-natural" title="Body Test without augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="body">L</button></div>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_body-mods" value=0 style='width:39px;' />=
-                </div>
-                <div class="table-item">
-                    <span name="attr_body_max"></span>
-                    <div><button data-i18n-title="body-test-aug" title="Body Test with augmentation" class="d6-button"
-                            type="action" name="act_attrib" id="body|max">L</button></div>
-                </div>
-                <header class="table-item-left" data-i18n="quickness">Quickness</header>
-                <div class="table-item">
-                    <input type="number" name="attr_quickness" value=1 min=1 style='width:39px;' />
-                    <div><button data-i18n-title="quickness-test-natural" title="Quickness Test without augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="quickness">L</button></div>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_quickness-mods" value=0 style='width:39px;' />=
-                </div>
-                <div class="table-item">
-                    <span name="attr_quickness_max"></span>
-                    <div><button data-i18n-title="quickness-test-natural" title="Quickness Test witht augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="quickness|max">L</button></div>
-                </div>
-                <header class="table-item-left" data-i18n="strength">Strength</header>
-                <div class="table-item">
-                    <input type="number" name="attr_strength" value=1 min=1 style='width:39px;' />
-                    <div><button data-i18n-title="strength-test-natural" title="Strength Test without augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="strength">L</button></div>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_strength-mods" value=0 style='width:39px;' />=
-                </div>
-                <div class="table-item">
-                    <span name="attr_strength_max"></span>
-                    <div><button data-i18n-title="strength-test-natural" title="Strength Test with augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="strength|max">L</button></div>
-                </div>
-                <header class="table-item-left" data-i18n="charisma">Charisma</header>
-                <div class="table-item">
-                    <input type="number" name="attr_Charisma" value=1 min=1 style='width:39px;' />
-                    <div><button data-i18n-title="charisma-test-natural" title="Charisma Test without augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="charisma">L</button></div>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_charisma-mods" value=0 style='width:39px;' />=
-                </div>
-                <div class="table-item">
-                    <span name="attr_charisma_max" value=1></span>
-                    <div><button data-i18n-title="charisma-test-natural" title="Charisma Test with augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="charisma|max">L</button></div>
-                </div>
-                <header class="table-item-left" data-i18n="intelligence">Intelligence</header>
-                <div class="table-item">
-                    <input type="number" name="attr_intelligence" value=1 min=1 style='width:39px;' />
-                    <div><button data-i18n-title="intelligence-test-natural"
-                            title="Intelligence Test without augmentation" class="d6-button" type="action"
-                            name="act_attrib" id="intelligence">L</button></div>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_intelligence-mods" value=0
-                        style='width:39px;' />=</div>
-                <div class="table-item">
-                    <span name="attr_intelligence_max" value=1></span>
-                    <div><button data-i18n-title="intelligence-test-natural" title="Intelligence Test with augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="intelligence|max">L</button></div>
-                </div>
-                <header class="table-item-left" data-i18n="willpower">Willpower</header>
-                <div class="table-item">
-                    <input type="number" name="attr_willpower" value=1 min=1 style='width:39px;' />
-                    <div><button data-i18n-title="willpower-test-natural" title="Willpower Test without augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="willpower">L</button></div>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_willpower-mods" value=0 style='width:39px;' />=
-                </div>
-                <div class="table-item">
-                    <span name="attr_willpower_max" value=1></span>
-                    <div><button data-i18n-title="willpower-test-natural" title="Willpower Test with augmentation"
-                            class="d6-button" type="action" name="act_attrib" id="willpower|max">L</button></div>
-                </div>
-                <header class="table-item-left" data-i18n="essence">Essence</header>
-                <div class="table-item">
-                    <input type="number" name="attr_essence" value=6 step='0.01' min='0.00' style='width:39px' />
-                    <div><button data-i18n-title="essence-test" title="Essence Test" class="d6-button" type="action"
-                            name="act_attrib" id="essence">L</button></div>
-                </div>
-                <div></div>
-                <div></div>
-                <header class="table-item-left" data-i18n="magic">Magic</header>
-                <div class="table-item">
-                    <input type="number" name="attr_magic" value=0 style='width:39px;' />
-                    <div><button data-i18n-title="magic-test" title="Magic Test" class="d6-button" type="action"
-                            name="act_attrib" id="magic">L</button></div>
-                </div>
-                <input type="number" name="attr_signature" value=4 hidden="true">
+<section class='attributes hidden' data-sheet="attributes">
+    <article>
+        <div class="SRH3" data-i18n="attributes">Attributes</div>
+        <div class="attributes-main">
+            <header class="table-top-left" data-i18n="attribute">Attribute</header>
+            <header class="table-top-mid" data-i18n="base">Base</header>
+            <header class="table-top-mid" data-i18n="mods">Mods</header>
+            <header class="table-top-right" data-i18n="final">Final</header>
+            <header class="table-item-left" data-i18n="body">Body</header>
+            <div class="table-item">
+                <input type="number" name="attr_body" value=1 min=1 style='width:39px;' />
+                <div><button data-i18n-title="body-test-natural" title="Body Test without augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="body">L</button></div>
             </div>
+            <div class="table-item">+<input type="number" name="attr_body-mods" value=0 style='width:39px;' />=
+            </div>
+            <div class="table-item">
+                <span name="attr_body_max"></span>
+                <div><button data-i18n-title="body-test-aug" title="Body Test with augmentation" class="d6-button"
+                        type="action" name="act_attrib" id="body|max">L</button></div>
+            </div>
+            <header class="table-item-left" data-i18n="quickness">Quickness</header>
+            <div class="table-item">
+                <input type="number" name="attr_quickness" value=1 min=1 style='width:39px;' />
+                <div><button data-i18n-title="quickness-test-natural" title="Quickness Test without augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="quickness">L</button></div>
+            </div>
+            <div class="table-item">+<input type="number" name="attr_quickness-mods" value=0 style='width:39px;' />=
+            </div>
+            <div class="table-item">
+                <span name="attr_quickness_max"></span>
+                <div><button data-i18n-title="quickness-test-natural" title="Quickness Test witht augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="quickness|max">L</button></div>
+            </div>
+            <header class="table-item-left" data-i18n="strength">Strength</header>
+            <div class="table-item">
+                <input type="number" name="attr_strength" value=1 min=1 style='width:39px;' />
+                <div><button data-i18n-title="strength-test-natural" title="Strength Test without augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="strength">L</button></div>
+            </div>
+            <div class="table-item">+<input type="number" name="attr_strength-mods" value=0 style='width:39px;' />=
+            </div>
+            <div class="table-item">
+                <span name="attr_strength_max"></span>
+                <div><button data-i18n-title="strength-test-natural" title="Strength Test with augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="strength|max">L</button></div>
+            </div>
+            <header class="table-item-left" data-i18n="charisma">Charisma</header>
+            <div class="table-item">
+                <input type="number" name="attr_Charisma" value=1 min=1 style='width:39px;' />
+                <div><button data-i18n-title="charisma-test-natural" title="Charisma Test without augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="charisma">L</button></div>
+            </div>
+            <div class="table-item">+<input type="number" name="attr_charisma-mods" value=0 style='width:39px;' />=
+            </div>
+            <div class="table-item">
+                <span name="attr_charisma_max" value=1></span>
+                <div><button data-i18n-title="charisma-test-natural" title="Charisma Test with augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="charisma|max">L</button></div>
+            </div>
+            <header class="table-item-left" data-i18n="intelligence">Intelligence</header>
+            <div class="table-item">
+                <input type="number" name="attr_intelligence" value=1 min=1 style='width:39px;' />
+                <div><button data-i18n-title="intelligence-test-natural" title="Intelligence Test without augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="intelligence">L</button></div>
+            </div>
+            <div class="table-item">+<input type="number" name="attr_intelligence-mods" value=0 style='width:39px;' />=
+            </div>
+            <div class="table-item">
+                <span name="attr_intelligence_max" value=1></span>
+                <div><button data-i18n-title="intelligence-test-natural" title="Intelligence Test with augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="intelligence|max">L</button></div>
+            </div>
+            <header class="table-item-left" data-i18n="willpower">Willpower</header>
+            <div class="table-item">
+                <input type="number" name="attr_willpower" value=1 min=1 style='width:39px;' />
+                <div><button data-i18n-title="willpower-test-natural" title="Willpower Test without augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="willpower">L</button></div>
+            </div>
+            <div class="table-item">+<input type="number" name="attr_willpower-mods" value=0 style='width:39px;' />=
+            </div>
+            <div class="table-item">
+                <span name="attr_willpower_max" value=1></span>
+                <div><button data-i18n-title="willpower-test-natural" title="Willpower Test with augmentation"
+                        class="d6-button" type="action" name="act_attrib" id="willpower|max">L</button></div>
+            </div>
+            <header class="table-item-left" data-i18n="essence">Essence</header>
+            <div class="table-item">
+                <input type="number" name="attr_essence" value=6 step='0.01' min='0.00' style='width:39px' />
+                <div><button data-i18n-title="essence-test" title="Essence Test" class="d6-button" type="action"
+                        name="act_attrib" id="essence">L</button></div>
+            </div>
+            <div></div>
+            <div></div>
+            <header class="table-item-left" data-i18n="magic">Magic</header>
+            <div class="table-item">
+                <input type="number" name="attr_magic" value=0 style='width:39px;' />
+                <div><button data-i18n-title="magic-test" title="Magic Test" class="d6-button" type="action"
+                        name="act_attrib" id="magic">L</button></div>
+            </div>
+            <input type="number" name="attr_signature" value=4 hidden="true">
         </div>
-
-        <div class="critters-only spirits-only">
-            <div class="SRH3" data-i18n="attributes">Attributes</div>
-            <div class="critter-attributes">
-                <header class="table-top-left" data-i18n="attribute">Attribute</header>
-                <header class="table-top-right" data-i18n="level">Level</header>
-                <header class="table-item-left" data-i18n="perception">Perception</header>
-                <div class="table-item">
-                    <div class="sidebyside"><input type="number" name="attr_perception" value=0 min=0 />
-                        <button type="action" name="act_attrib" class="d6-button" data-i18n-title="perception-test"
-                            title="Perception Test" id="perception">L</button>
-                    </div>
+    </article>
+    <article class="attributes-critters">
+        <div class="SRH3" data-i18n="attributes">Attributes Extended</div>
+        <div class="attributes-critters-table">
+            <header class="table-top-left" data-i18n="attribute">Attribute</header>
+            <header class="table-top-right" data-i18n="level">Level</header>
+            <header class="table-item-left" data-i18n="perception">Perception</header>
+            <div class="table-item">
+                <div class="sidebyside"><input type="number" name="attr_perception" value=0 min=0 />
+                    <button type="action" name="act_attrib" class="d6-button" data-i18n-title="perception-test"
+                        title="Perception Test" id="perception">L</button>
                 </div>
-                <header class="table-item-left" data-i18n="reach">Reach</header>
-                <div class="table-item">
-                    <div class="sidebyside"><input type="number" name="attr_meleereach" value=0 />
-                        <div></div>
-                    </div>
+            </div>
+            <header class="table-item-left" data-i18n="reach">Reach</header>
+            <div class="table-item">
+                <div class="sidebyside"><input type="number" name="attr_meleereach" value=0 />
+                    <div></div>
                 </div>
-                <header class="table-item-left" data-i18n="force">Force</header>
-                <div class="table-item">
-                    <div class="sidebyside"><input type="number" name="attr_force" value=0 min=0 />
-                        <div></div>
-                    </div>
+            </div>
+            <header class="table-item-left" data-i18n="force">Force</header>
+            <div class="table-item">
+                <div class="sidebyside"><input type="number" name="attr_force" value=0 min=0 />
+                    <div></div>
                 </div>
-                <header class="table-item-left" data-i18n="attacks">Attacks</header>
-                <div class="table-item">
-                    <div class="critter-attack">
-                        <input type="number" name="attr_attackpower" value=0 min=0 />
-                        <select name="attr_attackdamage" class="mediumselect2">
-                            <option data-i18n="light-damage-abbreviation" value="L">L</option>
-                            <option data-i18n="moderate-damage-abbreviation" value="M" SELECTED>M</option>
-                            <option data-i18n="serious-damage-abbreviation" value="S">S</option>
-                            <option data-i18n="deadly-damage-abbreviation" value="D">D</option>
-                            <option data-i18n="light-stun-abbreviation" value="L(stun)">L(s)</option>
-                            <option data-i18n="moderate-stun-abbreviation" value="M(stun)">M(s)</option>
-                            <option data-i18n="serious-stun-abbreviation" value="S(stun)">S(s)</option>
-                            <option data-i18n="deadly-stun-abbreviation" value="D(stun)">D(s)</option>
-                            <option></option>
-                        </select>
-                        <button type="action" name="act_melee" id="critterattack" class="d6-button"
-                            title="Attack">L</button>
-                    </div>
+            </div>
+            <header class="table-item-left" data-i18n="attacks">Attacks</header>
+            <div class="table-item">
+                <div class="critter-attack">
+                    <input type="number" name="attr_attackpower" value=0 min=0 />
+                    <select name="attr_attackdamage" class="mediumselect2">
+                        <option data-i18n="light-damage-abbreviation" value="L">L</option>
+                        <option data-i18n="moderate-damage-abbreviation" value="M" SELECTED>M</option>
+                        <option data-i18n="serious-damage-abbreviation" value="S">S</option>
+                        <option data-i18n="deadly-damage-abbreviation" value="D">D</option>
+                        <option data-i18n="light-stun-abbreviation" value="L(stun)">L(s)</option>
+                        <option data-i18n="moderate-stun-abbreviation" value="M(stun)">M(s)</option>
+                        <option data-i18n="serious-stun-abbreviation" value="S(stun)">S(s)</option>
+                        <option data-i18n="deadly-stun-abbreviation" value="D(stun)">D(s)</option>
+                        <option></option>
+                    </select>
+                    <button type="action" name="act_melee" id="critterattack" class="d6-button"
+                        title="Attack">L</button>
                 </div>
             </div>
         </div>
-        <div>
-            <input type='hidden' class='buttontoggle' name='attr_sheettype' />
-            <div class="SRH3" data-i18n="reaction-init-speed">Reaction, Init & Speed</div>
-            <div class="reaction">
-                <div class="table-top-left"></div>
-                <div class="table-top-mid" data-i18n="natural">Natural</div>
-                <div class="table-top-mid" data-i18n="mods">Mods</div>
-                <div class="table-top-right" data-i18n="final">Final</div>
-                <header class="table-item-left" data-i18n="reaction">Reaction:</header>
-                <div class="table-item">
-                    <input type="number" name="attr_reaction" value="1" min="1">
-                    <button type="action" name="act_attrib" class="d6-button" title="Un-augmented Reaction Test"
-                        id="reaction">L</button>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_reaction-mods" value=0 min=0></div>
-                <div class="table-item"> <span name="attr_reaction_max"></span>
-                    <button type="action" name="act_attrib" class="d6-button" title="Augmented Reaction Test"
-                        id="reaction|max">L</button>
-                </div>
-                <header class="table-item-left" data-i18n="initiative">Initiative:</header>
-                <div class="table-item">
-                    <input type="number" name="attr_initiative" value="1" min="1">d6
-                    <button type="action" name="act_init" class="d6-button" title="Unaugmented Initiative"
-                        id="natrualinit">L</button>
-                </div>
-                <div class="table-item">+<input type="number" name="attr_initiative-mods" value=0 min=0></div>
-                <div class="table-item"><span name="attr_initiative_max"></span>d6<button type="action" name="act_init"
-                        class="d6-button" title="Augmented Initiative" id="augmentedinit">L</button>
-                </div>
-                <div clsss="table-item"></div>
-                <div clsss="table-item"></div>
-                <div clsss="table-item"></div>
+    </article>
+    <div class="reaction">
+        <div class="SRH3" data-i18n="reaction-init-speed">Reaction, Init & Speed</div>
+        <div class="reaction-main" data-reaction="normal">
+            <div class="table-top-left"></div>
+            <div class="table-top-mid" data-i18n="natural">Natural</div>
+            <div class="table-top-mid" data-i18n="mods">Mods</div>
+            <div class="table-top-right" data-i18n="final">Final</div>
+            <header class="table-item-left" data-i18n="reaction">Reaction:</header>
+            <div class="table-item">
+                <input type="number" name="attr_reaction" value="1" min="1">
+                <button type="action" name="act_attrib" class="d6-button" title="Un-augmented Reaction Test"
+                    id="reaction">L</button>
             </div>
-            <div class="reaction-spirit">
-                <div class="table-top-left"></div>
-                <div class="table-top-mid" data-i18n="physical">Physical</div>
-                <div class="table-top-right" data-i18n="astral">Astral</div>
-                <header class="table-item-left" data-i18n="reaction">Reaction:</header>
-                <div class="table-item">
-                    <input type="number" name="attr_reaction" value="1" min="1">
-                    <button type="action" name="act_attrib" class="d6-button" title="Reaction Test"
-                        id="reaction">L</button>
-                </div>
-                <div class="table-item">
-                    <input type="number" name="attr_astralreaction" value="1" min="1">
-                    <button type="action" name="act_attrib" class="d6-button" title="Astral Reaction Test"
-                        id="astralreaction">L</button>
-                </div>
-                <header class="table-item-left" data-i18n="initiative">Initiative:</header>
-                <div class="table-item">
-                    <input type="number" name="attr_initiative" value="1" min="1">d6+<span
-                        name="attr_spirit-initp"></span>
-                    <button title="Physical Initiative" class="d6-button" type="action" name="act_init"
-                        id="spiritinit">L</button>
-                </div>
-                <div class="table-item">
-                    <input type="number" name="attr_initiative_max" value="1" min="1">d6+<span
-                        name="attr_astralreaction"></span>
-                    <button title="Astral Initiative" class="d6-button" type="action" name="act_init"
-                        id="astralinit">L</button>
-                </div>
+            <div class="table-item">+<input type="number" name="attr_reaction-mods" value=0 min=0></div>
+            <div class="table-item"> <span name="attr_reaction_max"></span>
+                <button type="action" name="act_attrib" class="d6-button" title="Augmented Reaction Test"
+                    id="reaction|max">L</button>
             </div>
-            <div class="walk-run">
-                <input type="hidden" name="attr_run" value=0 />
-                <input type="hidden" name="attr_walk" value=0 />
-                <header class="table-item-left" data-i18n="walking-rate">Walking Rate:</header>
-                <div class="table-item"><span class="numberspan" name="attr_walk"></span></div>
-                <div class="table-item" data-i18n="meters-per-combat-turn">meters per combat turn</div>
-                <header class="table-item-left" data-i18n="running-rate">Running Rate:</header>
-                <div class="table-item"><span class="numberspan" name="attr_run"></span></div>
-                <div class="table-item" data-i18n="meters-per-combat-turn">meters per combat turn</div>
+            <header class="table-item-left" data-i18n="initiative">Initiative:</header>
+            <div class="table-item">
+                <input type="number" name="attr_initiative" value="1" min="1">d6
+                <button type="action" name="act_init" class="d6-button" title="Unaugmented Initiative"
+                    id="natrualinit">L</button>
             </div>
-
-
-            <div class="SRH3">Dice Pools</div>
-            <div class="dice-pools">
-                <header class="table-top-left" data-i18n="pool">Pool</header>
-                <header class="table-top-mid" data-i18n="calculated">Calculated</header>
-                <header class="table-top-mid" data-i18n="mods">Mods</header>
-                <header class="table-top-right" data-i18n="final">Final</header>
-                <div class="table-item-left" data-i18n="combat">Combat</div>
-                <div class="table-item"><span name="attr_combatpool-base"></span></div>
-                <div class="table-item"><input type="number" name="attr_combatpool-mods" value=0></div>
-                <div class="table-item"><span name="attr_combatpool"></span></div>
-                <div class="table-item-left" data-i18n="spell">Spell</div>
-                <div class="table-item"><span name="attr_spellpool-base"></span></div>
-                <div class="table-item"><input type="number" name="attr_spellpool-mods" value=0></div>
-                <div class="table-item"><span name="attr_spellpool"></span></div>
-                <div class="table-item-left" data-i18n="hacking">Hacking</div>
-                <div class="table-item"><span name="attr_hackingpool-base"></span></div>
-                <div class="table-item"><input type="number" name="attr_hackingpool-mods" value=0></div>
-                <div class="table-item"><span name="attr_hackingpool"></span></div>
-                <div class="table-item-left" data-i18n="control">Control</div>
-                <div class="table-item"><span name="attr_controlpool-base"></span></div>
-                <div class="table-item"><input type="number" name="attr_controlpool-mods" value=0></div>
-                <div class="table-item"><span name="attr_controlpool"></span></div>
-                <div class="table-item-left" data-i18n="astral">Astral</div>
-                <div class="table-item"><span name="attr_astralpool-base"></span></div>
-                <div class="table-item"><input type="number" name="attr_astralpool-mods" value=0></div>
-                <div class="table-item"><span name="attr_astralpool"></span></div>
-                <div class="table-item-left" data-i18n="task">Task</div>
-                <div class="table-item"></div>
-                <div class="table-item"></div>
-                <div class="table-item"><input type="number" name="attr_taskpool" value=0></div>
+            <div class="table-item">+<input type="number" name="attr_initiative-mods" value=0 min=0></div>
+            <div class="table-item"><span name="attr_initiative_max"></span>d6<button type="action" name="act_init"
+                    class="d6-button" title="Augmented Initiative" id="augmentedinit">L</button>
             </div>
-
+            <div clsss="table-item"></div>
+            <div clsss="table-item"></div>
+            <div clsss="table-item"></div>
         </div>
-        <div class="npc-chars-only">
-            <div class="SRH3">Karma</div>
-            <div class="karma-pool">
-                <header class="table-top-left" data-i18n="karma-pool">Karma Pool:</header>
-                <div class="table-top-right karma-max">
-                    <input type="number" name="attr_karma-pool" value=0>
-                    /
-                    <input type="number" name="attr_karma-pool-used" value=0>
-                </div>
-                <header class="table-item-left" data-i18n="good-karma">Good Karma:</header>
-                <div class="table-item"><input type="number" name="attr_karma-good" value=0 /></div>
-                <header class="table-item-left" data-i18n="professional-rating">Professional Rating:</header>
-                <div class="table-item"><input type="number" name="attr_prorating" /></div>
+        <div class="reaction-spirit" data-reaction="spirit">
+            <div class="table-top-left"></div>
+            <div class="table-top-mid" data-i18n="physical">Physical</div>
+            <div class="table-top-right" data-i18n="astral">Astral</div>
+            <header class="table-item-left" data-i18n="reaction">Reaction:</header>
+            <div class="table-item">
+                <input type="number" name="attr_reaction" value="1" min="1">
+                <button type="action" name="act_attrib" class="d6-button" title="Reaction Test" id="reaction">L</button>
             </div>
+            <div class="table-item">
+                <input type="number" name="attr_astralreaction" value="1" min="1">
+                <button type="action" name="act_attrib" class="d6-button" title="Astral Reaction Test"
+                    id="astralreaction">L</button>
+            </div>
+            <header class="table-item-left" data-i18n="initiative">Initiative:</header>
+            <div class="table-item">
+                <input type="number" name="attr_initiative" value="1" min="1">d6+<span name="attr_spirit-initp"></span>
+                <button title="Physical Initiative" class="d6-button" type="action" name="act_init"
+                    id="spiritinit">L</button>
+            </div>
+            <div class="table-item">
+                <input type="number" name="attr_initiative_max" value="1" min="1">d6+<span
+                    name="attr_astralreaction"></span>
+                <button title="Astral Initiative" class="d6-button" type="action" name="act_init"
+                    id="astralinit">L</button>
+            </div>
+        </div>
+        <div class="walk-run">
+            <input type="hidden" name="attr_run" value=0 />
+            <input type="hidden" name="attr_walk" value=0 />
+            <header class="table-item-left" data-i18n="walking-rate">Walking Rate:</header>
+            <div class="table-item"><span class="numberspan" name="attr_walk"></span></div>
+            <div class="table-item" data-i18n="meters-per-combat-turn">meters per combat turn</div>
+            <header class="table-item-left" data-i18n="running-rate">Running Rate:</header>
+            <div class="table-item"><span class="numberspan" name="attr_run"></span></div>
+            <div class="table-item" data-i18n="meters-per-combat-turn">meters per combat turn</div>
+        </div>
+
+
+        <div class="SRH3">Dice Pools</div>
+        <div class="dice-pools">
+            <header class="table-top-left" data-i18n="pool">Pool</header>
+            <header class="table-top-mid" data-i18n="calculated">Calculated</header>
+            <header class="table-top-mid" data-i18n="mods">Mods</header>
+            <header class="table-top-right" data-i18n="final">Final</header>
+            <div class="table-item-left" data-i18n="combat">Combat</div>
+            <div class="table-item"><span name="attr_combatpool-base"></span></div>
+            <div class="table-item"><input type="number" name="attr_combatpool-mods" value=0></div>
+            <div class="table-item"><span name="attr_combatpool"></span></div>
+            <div class="table-item-left" data-i18n="spell">Spell</div>
+            <div class="table-item"><span name="attr_spellpool-base"></span></div>
+            <div class="table-item"><input type="number" name="attr_spellpool-mods" value=0></div>
+            <div class="table-item"><span name="attr_spellpool"></span></div>
+            <div class="table-item-left" data-i18n="hacking">Hacking</div>
+            <div class="table-item"><span name="attr_hackingpool-base"></span></div>
+            <div class="table-item"><input type="number" name="attr_hackingpool-mods" value=0></div>
+            <div class="table-item"><span name="attr_hackingpool"></span></div>
+            <div class="table-item-left" data-i18n="control">Control</div>
+            <div class="table-item"><span name="attr_controlpool-base"></span></div>
+            <div class="table-item"><input type="number" name="attr_controlpool-mods" value=0></div>
+            <div class="table-item"><span name="attr_controlpool"></span></div>
+            <div class="table-item-left" data-i18n="astral">Astral</div>
+            <div class="table-item"><span name="attr_astralpool-base"></span></div>
+            <div class="table-item"><input type="number" name="attr_astralpool-mods" value=0></div>
+            <div class="table-item"><span name="attr_astralpool"></span></div>
+            <div class="table-item-left" data-i18n="task">Task</div>
+            <div class="table-item"></div>
+            <div class="table-item"></div>
+            <div class="table-item"><input type="number" name="attr_taskpool" value=0></div>
+        </div>
+
+    </div>
+
+    <div class="attributes-karma">
+        <div class="SRH3">Karma</div>
+        <div class="karma-pool">
+            <header class="table-top-left" data-i18n="karma-pool">Karma Pool:</header>
+            <div class="table-top-right karma-max">
+                <input type="number" name="attr_karma-pool" value=0>
+                /
+                <input type="number" name="attr_karma-pool-used" value=0>
+            </div>
+            <header class="table-item-left" data-i18n="good-karma">Good Karma:</header>
+            <div class="table-item"><input type="number" name="attr_karma-good" value=0 /></div>
+            <header class="table-item-left" data-i18n="professional-rating">Professional Rating:</header>
+            <div class="table-item"><input type="number" name="attr_prorating" /></div>
         </div>
     </div>
+
 </section>
 
-<section class='skills hidden' data-tab="skills">
+<section class='skills hidden' data-sheet="skills">
     <!-- Skills Tab -->
 
     <div class="SRH2" data-i18n="skills-edges-flaws">Skills/Edges/Flaws</div>
@@ -856,7 +846,7 @@
     </div>
 </section>
 
-<section class='magic hidden' data-tab="magic">
+<section class='magic hidden' data-sheet="magic">
     <!-- Magic Tab -->
     <input type='hidden' class='magictype' name='attr_magic-type' />
     <input type='hidden' name='attr_spelldefmin' value=0 />
@@ -866,7 +856,6 @@
     <input type='hidden' name='attr_conjuring-used' value=0 />
     <input type='hidden' name='attr_spelldefensedice-used' value=0 />
     <input type='hidden' class='astralattributes-switch' name='attr_astralattributesswitch' value="show" />
-    <input type='hidden' class='buttontoggle' name='attr_sheettype' />
     <div class="spells-status">
         <div class="spells-status-tracking">
             <div></div>
@@ -911,7 +900,7 @@
             <div><span name="attr_conjuring-used"></span></div>
 
         </div>
-        <div class="spells-status-buttons">
+        <div class="spells-status-buttons" >
             <div title="Miscelaneous Modifiers for Spell Casting and Conjuring" data-i18n="misc-modifiers">Misc.
                 Modifiers: </div>
             <input type="number" name='attr_spellmisc' min=0 value=0>
@@ -941,34 +930,19 @@
     </div>
     <input type='hidden' class='buttontoggle' name='attr_sheettype' />
     <div class="magic-tabs">
-        <input type='hidden' class='magictype' name='attr_magic-type' />
-        <input type="hidden" class="magic-tabs-switch" name="attr_magictab" value="sorcery">
-        <button class="magic-tabs-astral" type="action" name="act_astral-tab" data-i8n="astral-uppercase"
-            data-i18n-title="astral-state-combat" title="Astral State and Combat">ASTRAL</button>
-        <button class="magic-tabs-skills" type="action" name="act_sorcery-tab" data-i8n="skills-uppercase"
-            data-i18n-title="magic-skills-configuration" title="Magic Skills and Configuration">SKILLS</button>
-        <button class="magic-tabs-spells" type="action" name="act_spells-tab">SPELLS</button>
-        <button class="magic-tabs-conjuring" type="action" name="act_conjuring-tab">CONJURING</button>
-        <div class="adept-only">
-            <button class="magic-tabs-adept" type="action" name="act_adept-tab" data-i8n="adept-uppercase"
-                data-i18n-title="adept-powers" title="Adept Powers">ADEPT</button>
-        </div>
-        <button class="magic-tabs-foci" type="action" name="act_foci-tab" data-i8n="foci-uppercase">FOCI</button>
-        <button class="magic-tabs-initiate" type="action" name="act_initiate-tab"
-            data-i8n="initiate-uppercase">INITIATE</button>
-        <button class="magic-tabs-geas" type="action" name="act_geas-tab" data-i8n="geas-uppercase">GAES</button>
-        <button class="magic-tabs-totem" type="action" name="act_totem-tab" data-i8n="totem-uppercase">TOTEM</button>
-        <div class="tabs-empty"></div>
+        <div class="toggleMenu" data-target="data-magic" data-value="astral" data-i8n="astral-uppercase"
+            data-i18n-title="astral-state-combat" title="Astral State and Combat">ASTRAL</div>
+        <div class="toggleMenu" data-target="data-magic" data-value="skills" data-i8n="skills-uppercase"
+            data-i18n-title="magic-skills-configuration" title="Magic Skills and Configuration">SKILLS</div>    
+        <div class="toggleMenu" data-target="data-magic" data-value="spells" data-i8n="spells-uppercase">SPELLS</div> 
+        <div class="toggleMenu" data-target="data-magic" data-value="conjuring" data-i8n="conjuring-uppercase">CONJURING</div> 
+        <div class="toggleMenu" data-target="data-magic" data-value="adept" data-i8n="adept-uppercase"
+                data-i18n-title="adept-powers" title="Adept Powers">ADEPT</div>
+        <div class="toggleMenu" data-target="data-magic" data-value="foci" ddata-i8n="foci-uppercase">FOCI</div> 
+        <div class="toggleMenu" data-target="data-magic" data-value="initiate" data-i8n="initiate-uppercase">INITIATE</div> 
+        <div class="toggleMenu" data-target="data-sheet" data-value="skills" data-i8n="geas-uppercase">GAES</div> 
+        <div class="toggleMenu" data-target="data-magic" data-value="totem" data-i8n="totem-uppercase">TOTEM</div> 
     </div>
-    <div class="spirit-magic-tabs">
-        <input type='hidden' class='magictype' name='attr_magic-type' />
-        <input type="hidden" class="magic-tabs-switch" name="attr_magictab" value="astral">
-        <button class="magic-tabs-astral" type="action" name="act_astral-tab" data-i8n="astral-uppercase"
-            data-i18n-title="astral-state-combat" title="Astral State and Combat">ASTRAL</button>
-        <button class="magic-tabs-spells" type="action" name="act_spells-tab">SPELLS</button>
-        <div class="tabs-empty"></div>
-    </div>
-    <input type="hidden" class="magic-tabs-switch" name="attr_magictab" value="sorcery">
     <input type="hidden" name="attr_astralreaction" value=0>
     <div class="astralattributes">
         <br>
@@ -1579,7 +1553,7 @@
     </div>
 </section>
 
-<section class='decks hidden' data-tab="decks">
+<section class='decks hidden' data-sheet="decks">
     <input type='hidden' class='buttontoggle' name='attr_sheettype' />
     <!--Decks Tab -->
     <div class="matrix-show-deck">
@@ -2192,7 +2166,7 @@
     </div>
 </section>
 
-<section class='karma hidden' data-tab="karma">
+<section class='karma hidden' data-sheet="karma">
     <div data-i18n="karma" class="SRH3">Karma</div>
     <div class="karma-summary">
         <header data-i18n="karma-pool" class="table-top-left">Karma Pool:</header>
@@ -2226,7 +2200,7 @@
 
 </section>
 
-<section class='gear hidden' data-tab="gear">
+<section class='gear hidden' data-sheet="gear">
     <input type="hidden" class="gear-tabs-switch" name="attr_geartab" value="gear">
     <div class="gear-tabs">
         <input type="hidden" class="gear-tabs-switch" name="attr_geartab" value="gear">
@@ -2363,7 +2337,7 @@
     </div>
 </section>
 
-<section class="rigger hidden" data-tab="rigger">
+<section class="rigger hidden" data-sheet="rigger">
     <div class="vcr-attributes">
         <div data-i18n="vcr-rating" class="text-mid">VCR Rating:</div>
         <div><input type="number" name="attr_vcr" value=0></div>
@@ -2662,7 +2636,7 @@
     </div>
 </section>
 
-<section class='combat hidden' data-tab="combat">
+<section class='combat hidden' data-sheet="combat">
     <!-- Combat Tab -->
 
     <div data-i18n="combat-skills-weapons-armor-and-ammunition" class="SRH2">Combat Skills, Weapons, Armor and Ammo
@@ -3414,7 +3388,7 @@
 
 </section>
 
-<section class="matrix hidden" data-tab="matrix">
+<section class="matrix hidden" data-sheet="matrix">
     <input class="matrixalert-format" type='hidden' name="attr_matrixalert" hidden=true value='None'>
     <input type="number" name="attr_matrixsecuritynumber" hidden="true">
     <div class="matrix-always-displayed">
@@ -3633,11 +3607,11 @@
     </div>
 </section>
 
-<section class="vehicles hidden" data-tab="vehicles">
+<section class="vehicles hidden" data-sheet="vehicles">
     <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab'>
     <input type='hidden' class='buttontoggle' name='attr_sheettype' />
     <div class="vehicle-only">
-        <div class="vehicle-buttons">
+        <div class="vehicle-buttons-old">
             <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab' />
             <button class="vehicle-attr-button" type="action" name="act_vehicle-attr-tab"
                 data-i18n="vehicle-attributes">Vehicle Attributes</button>
@@ -3650,7 +3624,7 @@
         </div>
     </div>
     <div class="drone-only">
-        <div class="vehicle-buttons">
+        <div class="vehicle-buttons-old">
             <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab' />
             <button class="vehicle-attr-button" type="action" name="act_vehicle-attr-tab"
                 data-i18n="drone-attributes">Drone Attributes</button>
@@ -4042,7 +4016,7 @@
     </div>
 </section>
 
-<section class="sheet-tab hidden" data-tab="vehicle-notes">
+<section class="sheet-tab hidden" data-sheet="vehicle-notes">
     <input type='hidden' class='buttontoggle' name='attr_sheettype' />
     <div class="SRH3 vehicle-only" data-i18n="vehicle-notes">Vehicle Notes</div>
     <div class="SRH3 drone-only" data-i18n="drone-notes">Drone Notes</div>
@@ -4050,7 +4024,7 @@
         style='width:500px;height:200px'>Modification Notes</textarea>
 </section>
 
-<section class="sheet-tab hidden" data-tab="vehicle-ecm">
+<section class="sheet-tab hidden" data-sheet="vehicle-ecm">
     <input type='hidden' class='buttontoggle' name='attr_sheettype' />
     <div class="SRH3 vehicle-only" data-i18n="vehicle-electronics-and-ecm-eccm">Vehicle Electornics and ECM/ECCM</div>
     <div class="SRH3 drone-only" data-i18n="drone-electronics-and-ecm-eccm">Drone Electornics and ECM/ECCM</div>
@@ -4127,7 +4101,7 @@
     </div>
 </section>
 
-<section class="sheet-tab hidden" data-tab="vehicle-combat">
+<section class="sheet-tab hidden" data-sheet="vehicle-combat">
     <div class="vehicle-stats-mini">
         <div class="text-mid" data-i18n="initiative">Initiative:</div>
         <div class="center-checkbox"><button type="action" name="act_init" class="d6-button" title="Vehicle Initiative"
@@ -4573,7 +4547,7 @@
     </div>
 </section>
 
-<section class="sheet-tab hidden" data-tab="cyberware">
+<section class="sheet-tab hidden" data-sheet="cyberware">
     <div class="cyberware-lists">
         <div class="SRH2" data-i18n="cyberware-bioware-nanoware">Cyberware, Bioware and Nanoware</div>
         <input type="hidden" class="ware-tabs-switch" name="attr_waretab" value="cyber">
@@ -4637,7 +4611,7 @@
     </div>
 </section>
 
-<section class="sheet-tab hidden" data-tab="contacts">
+<section class="sheet-tab hidden" data-sheet="contacts">
     <div class="SRH2" data-i18n="lifestyle">Lifestyle</div>
 
     <div>
@@ -4686,10 +4660,7 @@
     </div>
 </section>
 
-<section class="sheet-tab hidden">
-</section>
-
-<section class="sheet-tab hidden" data-tab="critter-powers">
+<section class="sheet-tab hidden" data-sheet="powers">
     <div class="critter-powers">
         <div>
             <div class="SRH4" data-i18n="powers">Powers</div>
@@ -5162,6 +5133,130 @@
 
 <script type="text/worker">
     <!-- hold for merge -->
+    var navMenus = {
+        "data-sheet": { "active": "attributes", "buttonsClass": "tabToggle" },
+        "data-magic": { "active": "skills", "buttonClass": "toggleMenu" },
+        "data-gear": { "active": "gear", "buttonClass": "toggleMenu" },
+        "data-cyberware": { "active": "gear", "buttonClass": "toggleMenu" },
+        "data-vehicles": { "active": "gear", "buttonClass": "toggleMenu" },
+        "data-decker": { "active": "gear", "buttonClass": "toggleMenu" }
+    }
+
+    const sheetTypes = {
+        "Character": {
+            "sheet": "Character-sheet",
+            "type": "Character",
+            "manual-gunnery": "show",
+            "metainfo": "metahuman",
+            "attributes": "metahuman",
+            "showClasss": [
+                "reaction-main",
+                "attributes-karma",
+                "init-normal",
+                "manual-gunnery",
+                "spells-status"
+            ],
+            "hideClasses": [
+                "attributes-critters",
+                "reaction-spirit",
+                "init-spirit"
+            ]
+        },
+        "NPC": {
+            "sheet": "Character-sheet",
+            "type": "NPC",
+            "showonly": ["metainfo"],
+             "manual-gunnery": "show",
+            "metainfo": "metahuman",
+            "inittype": "normal",
+            "attributes": "metahuman",
+            "showClasss": [
+                "reaction-main",
+                "attributes-karma",
+                "init-normal",
+                "manual-gunnery",
+                "spells-status"
+            ],
+            "hideClasses": [
+                "reaction-spirit",
+                "attributes-critters",
+                "init-spirit"
+            ]
+        },
+        "Vehicle": {
+            "sheet": "Vehicle-sheet",
+            "type": "Vehicle",
+            "manual-gunnery": "hide",
+            "metainfo": "vehicle",
+            "showonly": [],
+            "inittype": "normal",
+            "attributes": "vehicle"
+        },
+        "Drone": {
+            "sheet": "Vehicle-sheet",
+            "metainfo": "drone",
+            "manual-gunnery": "hide",
+            "type": "Drone",
+            "showonly": [],
+            "inittype": "normal",
+            "attributes": "vehicle"
+        },
+        "Critter": {
+            "sheet": "Critter-sheet",
+            "metainfo": "critter",
+            "manual-gunnery": "hide",
+            "type": "Critter",
+            "inittype": "normal",
+            "showClasss": [
+                "attributes-critters",
+                "reaction-main"
+            ],
+            "hideClasses": [
+                "attributes-karma",
+                "reaction-spirit",
+                "manual-gunnery",
+                "spells-status"
+            ]
+        },
+        "Spirit": {
+            "sheet": "Spirit-sheet",
+            "type": "Spirit",
+              "manual-gunnery": "hide",
+            "showonly": ["inittype"],
+            "inittype": "Spirit",
+            "metainfo": "spirit",
+            "showClasss": [
+                "reaction-spirit",
+                "attributes-critters",
+                "init-spirit"
+            ],
+            "hideClasses": [
+                "attributes-karma",
+                "reaction-main",
+                "init-normal",
+                "manual-gunnery",
+                "spells-status"
+            ]
+        },
+        "Matrix": {
+            "sheet": "matrix",
+            "metainfo": "matrix",
+              "manual-gunnery": "hide",
+            "type": "Matrix",
+              "showonly": [],
+            "inittype": "normal"
+        },
+        "Frame": {
+            "sheet": "matrix",
+            "metainfo": "frame",
+              "manual-gunnery": "hide",
+            "type": "Frame",
+              "showonly": [],
+              "reaction": "normal",
+            "inittype": "normal"
+        }
+    }
+
     $20('.toggle-button').on('click', function(e) {
         console.log("Toggle button clicked");
         const tab = e.htmlAttributes['data-tab'] + "-control";
@@ -5171,53 +5266,104 @@
     });
 
     function showSheetType(mySheetType, oldSheetType) {
+        const sheetOptions=["metainfo"];
         console.log("displaying sheettype: " + mySheetType);
-        const characters = ["Character", "NPC"];
-        const vehicles = ["Vehicle", "Drone"];
-        if (characters.includes(mySheetType)) {
-            myVisibleSheet = "Character-sheet";
-         } else if (vehicles.includes(mySheetType)) {
-            myVisibleSheet = "Vehicle-sheet";
+        const metatypes = ["Characters", "NPC"];
+        if (metatypes.includes(mySheetType)) {
+            $20(".metatype-info").removeClass('hidden');
         } else {
-            myVisibleSheet = mySheetType + "-sheet";
-        };
-        if (oldSheetType === undefined) {
+            $20(".metatype-info").addClass('hidden');
+        }
+        const myVisibleSheet = sheetTypes[mySheetType]["sheet"];
+        if (oldSheetType !== undefined) {
             console.log("displaing old sheettype: " + oldSheetType);
-            if (characters.includes(oldSheetType)) {
-                oldVisibleSheet = "Character-sheet";
-            } else if (vehicles.includes(oldSheetType)) {
-                oldVisibleSheet = "Vehicle-sheet";
-            } else {
-                oldVisibleSheet = oldSheetType + "-sheet";
-            };
+            oldVisibleSheet = sheetTypes[oldSheetType]["sheet"];
             $20("div[data-tab=" + oldVisibleSheet + "]").addClass('hidden');
         }
         $20("div[data-tab=" + myVisibleSheet + "]").removeClass('hidden');
-    };
-
-    on("sheet:opened", function () {
-        getAttrs(["sheetTab", "sheettype", "test_json"], function (myval) {
-            const characters = ["Character", "NPC"];
-            const mySheetTab = myval["sheetTab"];
-            console.log("Sheet Tab: " + mySheetTab);
-            $20(`section[data-tab=${mySheetTab}]`).removeClass('hidden');
-            $20("div[data-tab=" + mySheetTab + "-button]").addClass('selected-tab');
-            showSheetType(myval["sheettype"]);
+        // hide specific sections based on sheet type
+        console.log('Init Type is ' + sheetTypes[mySheetType]["inittype"]);
+        sheetOptions.forEach(function (option) {
+            $20("[data-" + option + "]").addClass('hidden');
+            $20("[data-" + option + "=" + sheetTypes[mySheetType][option] + "]").removeClass('hidden');
+            console.log('Setting option: ' + option + ' to ' + sheetTypes[mySheetType][option]);
         });
+        sheetTypes[mySheetType]["showClasss"].forEach(function (className) {
+            $20("." + className).removeClass('hidden');
+        });
+        sheetTypes[mySheetType]["hideClasses"].forEach(function (className) {
+            $20("." + className).addClass('hidden');
+        });
+        $20("[data-metainfo]").addClass('hidden');
+        $20("[data-metainfo=" + sheetTypes[mySheetType]["metainfo"] + "]").removeClass('hidden');
+    }
+
+on("sheet:opened", function () {
+    getAttrs(["sheetTab", "sheettype", "navMenus"], function (myval) {
+        if (myval["navMenus"] && myval["navMenus"].trim() !== "") {
+            try {
+                // Convert string to JSON and update navMenus variable
+                navMenus = JSON.parse(myval["navMenus"]);
+
+            } catch (e) {
+                console.error("Error parsing navMenus:", e);
+            }
+        } else {
+            console.log("navMenus is empty or undefined, using defaults");
+        }
+        Object.keys(navMenus).forEach(function (key) {
+
+            if (navMenus[value].hasOwnProperty('active')) {
+                const value = navMenus[key]['active'];
+                console.log(`Processing navMenu: ${key} with value: ${value}`);
+                showSheetTab(key      , navMenus[value][active], navMenus[value][buttonClass])
+            } else {
+                console.log(`navMenu ${key} does not have an active property`);
+            }
+    
+        });
+        showSheetType(myval["sheettype"]);
+        $20('[data-target="data-gunnery"][data-value="show"]').addClass('selected-tab');
+    });
+});
+
+    function showSheetTab(tabTarget, tabValue, buttonClass) {
+        console.log("displaying sheettab: " + tabValue);
+        console.log("taraget is: " + tabTarget + " value is: " + tabValue);
+        $20("[" + tabTarget + "]").addClass('hidden');
+        $20("[" + tabTarget + "=" + tabValue +"]").removeClass('hidden');
+        $20("." + buttonClass + "[data-value != " + tabValue + "]").removeClass('selected-tab');
+        $20("." + buttonClass + "[data-value = " + tabValue + "]").addClass('selected-tab');
+    }
+
+    $20('.toggleTab').on('click', function(e) {
+        console.log("Switching sheet");
+        showSheetTab(e.htmlAttributes['data-target'], e.htmlAttributes['data-value'], e.htmlAttributes['class']);
+        navMenus[e.htmlAttributes['data-target']]["active"] = e.htmlAttributes['data-value'];
+        console.log("setting navMenus: " + JSON.stringify(navMenus));
+        setAttrs({ "navMenus": JSON.stringify(navMenus) });
+
     });
 
-    $20('.switchSheet').on('click', function(e) {
-        const newTab = (e.htmlAttributes['data-tab']).split('-')[0];
-        setAttrs({
-            sheetTab:newTab
-        });
-        console.log("Switching to: " + newTab);
+    $20('.toggleMenu').on('click', function(e) {
+        console.log("Switching menu");
+        showSheetTab(e.htmlAttributes['data-target'], e.htmlAttributes['data-value'], e.htmlAttributes['class']);
+        navMenus[e.htmlAttributes['data-target']] = e.htmlAttributes['data-value'];
+        console.log("setting navMenus: " + JSON.stringify(navMenus));
+        setAttrs({ "navMenus": JSON.stringify(navMenus) });
+
+    });
+
+    $20('.toggleOption').on('click', function(e) {
+        const tabOption = (e.htmlAttributes['data-option']);
+        console.log("Switching option: " + tabOption);
+        $20("[data-option=" + tabOption + "]").toggleClass('hidden');
     });
 
     on("change:sheetTab", function(eventInfo) {
-        oldTab = eventInfo.previousValue;
-        newTab = eventInfo.newValue;
-        console.log("Switching from: " + oldTab + " to: " + newTab);
+        const tabTarget = (e.htmlAttributes['data-target']);
+        const tabValue = (e.htmlAttributes['data-value']);
+        console.log("Switching to: " + oldTab + " to: " + newTab);
         $20("section[data-tab=" + oldTab +"]").addClass('hidden');
         $20("section[data-tab=" + newTab +"]").removeClass('hidden');
         $20("div[data-tab=" + oldTab + "-button]").removeClass('selected-tab');

@@ -14,7 +14,23 @@ select option {
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
-.switchSheet {
+
+.toggleOption {
+    font-size: 1em;
+    padding: 3px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    text-decoration: none;
+    background: green;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    display: inline-block;
+    background-color: green;
+    text-align: center;
+}
+
+.toggleTab {
     font-size: 1em;
     padding: 4px;
     color: white;
@@ -26,11 +42,13 @@ select option {
     transition: all 0.3s ease-out;
     display: inline-block;
     background-color: black;
-    text-align: center;  
+    text-align: center;
 }
-.switchSheet:hover {
-    background: black;
+
+.toggleOption:hover,
+.toggleTab:hover {
     color: white;
+    border-color: white;
 }
 
 .selected-tab {
@@ -306,9 +324,9 @@ input:checked+.slider:before {
     grid-template-columns: 120px 120px;
 }
 
-.attributes-init {
+.attributes {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     border-radius: 20px;
     grid-gap: 5px;
@@ -346,6 +364,8 @@ input:checked+.slider:before {
     border-right: 2px solid #000000;
 }
 
+.character-buttons,
+.vehicle-buttons,
 .spirits-buttons,
 .critters-buttons,
 .alwaysdisplayed-buttons {
@@ -491,7 +511,7 @@ input:checked+.slider:before {
     border: 1px solid #000000;
 }
 
-.reaction {
+.reaction-main {
     display: grid;
     grid-template-columns: 90px 90px 65px 75px;
     border-top-right-radius: 10px;
@@ -502,6 +522,7 @@ input:checked+.slider:before {
 }
 
 .reaction-spirit {
+    display: grid;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     background-color: rgba(192, 192, 192, .9);
@@ -571,7 +592,7 @@ input:checked+.slider:before {
 
 .magic-tabs {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
 }
 
 .spirit-magic-tabs {
@@ -594,6 +615,19 @@ input:checked+.slider:before {
 .combat-tabs {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto 1fr;
+}
+
+
+.toggleMenu {
+    display: grid;
+    background-color: white;
+    border-bottom: 3px solid black;
+    text-align: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 18;
+    color: black;
 }
 
 .ware-tabs-cyber,
@@ -759,43 +793,7 @@ input:checked+.slider:before {
     background-image: url("https://raw.githubusercontent.com/bahornbeck/img/master/images/nebula2.jpg");
 }
 
-.sheet-tabstoggle[value="critter-powers"]~div.sheet-critter-powers,
-.sheet-tabstoggle[value="vehicle-combat-tab"]~div.vehicle-combat-tab,
-.sheet-tabstoggle[value="vehicle-notes-tab"]~div.vehicle-notes-tab,
-.sheet-tabstoggle[value="vehicle-attr-tab"]~div.vehicle-attr-tab,
-.sheet-tabstoggle[value="vehicle-ecm-tab"]~div.vehicle-ecm-tab,
-.sheet-tabstoggle[value="character"]~div.sheet-character,
-.sheet-tabstoggle[value="magic"]~div.sheet-magic,
-.sheet-tabstoggle[value="gear"]~div.sheet-gear,
-.sheet-tabstoggle[value="vehicles"]~div.sheet-vehicles,
-.sheet-tabstoggle[value="combat"]~div.sheet-combat,
-.sheet-tabstoggle[value="rigger"]~div.sheet-rigger,
-.sheet-tabstoggle[value="cyberware"]~div.sheet-cyberware,
-.sheet-tabstoggle[value="karma"]~div.sheet-karma,
-.sheet-tabstoggle[value="contacts"]~div.sheet-contacts,
-.sheet-tabstoggle[value="skills"]~div.sheet-skills {
-    display: block;
-}
 
-.sheet-tabstoggle[value="critter-powers"]~button.critters-powers-button,
-.sheet-tabstoggle[value="vehicle-combat-tab"]~button.vehicle-combat-button,
-.sheet-tabstoggle[value="vehicle-notes-tab"]~button.vehicle-notes-button,
-.sheet-tabstoggle[value="vehicle-attr-tab"]~button.vehicle-attr-button,
-.sheet-tabstoggle[value="vehicle-ecm-tab"]~button.vehicle-ecm-button,
-.sheet-tabstoggle[value="character"]~button.charbutton,
-.sheet-tabstoggle[value="skills"]~button.skillsbutton,
-.sheet-tabstoggle[value="decks"]~button.decksbutton,
-.sheet-tabstoggle[value="magic"]~button.magicbutton,
-.sheet-tabstoggle[value="magic"]~button.adeptbutton,
-.sheet-tabstoggle[value="gear"]~button.gearbutton,
-.sheet-tabstoggle[value="rigger"]~button.riggerbutton,
-.sheet-tabstoggle[value="vehicles"]~button.vehiclesbutton,
-.sheet-tabstoggle[value="cyberware"]~button.cyberwarebutton,
-.sheet-tabstoggle[value="karma"]~button.karmabutton,
-.sheet-tabstoggle[value="contacts"]~button.contactsbutton,
-.sheet-tabstoggle[value="combat"]~button.combatbutton {
-    background-color: red;
-}
 
 .small-rollbutton {
     display: inline-block;
@@ -815,23 +813,7 @@ input:checked+.slider:before {
     color: black;
 }
 
-.basic-button,
-.critters-powers-button,
-.vehicle-attr-button,
-.vehicle-notes-button,
-.vehicle-ecm-button,
-.vehicle-combat-button,
-.skillsbutton,
-.decksbutton,
-.magicbutton,
-.adeptbutton,
-.gearbutton,
-.riggerbutton,
-.vehiclesbutton,
-.contactsbutton,
-.cyberwarebutton,
-.karmabutton,
-.combatbutton {
+.basic-button {
     display: inline-block;
     background-color: black;
     /* Green */
@@ -843,41 +825,11 @@ input:checked+.slider:before {
     color: white
 }
 
-.basic-button:hover,
-.critters-powers-button:hover,
-.vehicle-attr-button:hover,
-.vehicle-notes-button:hover,
-.vehicle-ecm-button:hover,
-.vehicle-combat-button:hover,
-.contactsbutton:hover,
-.cyberwarebutton:hover,
-.skillsbutton:hover,
-.decksbutton:hover,
-.magicbutton:hover,
-.adeptbutton:hover,
-.gearbutton:hover,
-.riggerbutton:hover,
-.vehiclesbutton:hover,
-.combatbutton:hover {
+.basic-button:hover {
     background-color: white;
     color: black;
 }
 
-.spirit-magic-tabs,
-.reaction-spirit,
-.alwaysdisplayed-buttons,
-.critters-only,
-.spirits-only,
-.spirittype-info,
-.metatype-info,
-.matrix-show-frame,
-.characters-npcs,
-.sheet-critter-powers,
-.vehicles,
-.sheet-spirit,
-.matrix {
-    display: none;
-}
 
 .magictype[value="mage"]~div.shaman-only-foci,
 .magictype[value="aspect"]~div.shaman-only-foci,
@@ -896,62 +848,22 @@ input:checked+.slider:before {
     display: none;
 }
 
-.buttontoggle[value="Spirit"]~div.magic-tabs,
-.buttontoggle[value="Spirit"]~div.hide-spirit-critter,
-.buttontoggle[value="Critter"]~div.hide-spirit-critter,
-.buttontoggle[value="Spirit"]~div.normal-init,
-.buttontoggle[value="Spirit"]~div.npc-chars-only,
-.buttontoggle[value="Critter"]~div.npc-chars-only,
-.buttontoggle[value="Spirit"]~div.manual-gunnery,
-.buttontoggle[value="Critter"]~div.manual-gunnery {
-    display: none;
-}
 
-.buttontoggle[value="Spirit"]~div.spirit-magic-tabs,
-.buttontoggle[value="Spirit"]~div.spells-spirit-status,
-.buttontoggle[value="Spirit"]~div.reaction-spirit,
-.buttontoggle[value="Spirit"]~div.spirittype-info {
+.spirittype-info,
+.metatype-info {
     display: grid;
-
-}
-
-.buttontoggle[value="Critter"]~div.spells-spirit-status,
-.buttontoggle[value="Character"]~div.spells-spirit-status,
-.buttontoggle[value="NPC"]~div.spells-spirit-status,
-.buttontoggle[value="Spirit"]~div.spells-status,
-.buttontoggle[value="Spirit"]~div.reaction {
-    display: none;
-}
-
-.spirittype-info {
-    grid-template-columns: 80px 250px 60px 45px;
-    align-items: center;
-    grid-column-start: 1;
-}
-
-.buttontoggle[value="NPC"]~div.metatype-info,
-.buttontoggle[value="Character"]~div.metatype-info {
-    display: grid;
-    grid-template-columns: 70px 80px 40px 60px 50px 60px 55px 60px;
     text-align: right;
+    align-items: center;
     vertical-align: middle;
     grid-column-start: 1;
 }
 
+.spirittype-info {
+    grid-template-columns: 80px 250px 60px 45px;
+}
 
-.buttontoggle[value="Character"]~header.characters-npcs,
-.buttontoggle[value="Character"]~div.alwaysdisplayed-buttons,
-.buttontoggle[value="NPC"]~header.characters-npcs,
-.buttontoggle[value="NPC"]~div.alwaysdisplayed-buttons,
-.buttontoggle[value="Spirit"]~div.sheet-spirit,
-.buttontoggle[value="Spirit"]~div.spirits-only,
-.buttontoggle[value="Spirit"]~header.characters-npcs,
-.buttontoggle[value="Critter"]~div.sheet-critter,
-.buttontoggle[value="Critter"]~header.characters-npcs,
-.buttontoggle[value="Critter"]~div.critters-only,
-.buttontoggle[value="Frame"]~div.sheet-decks,
-.buttontoggle[value="Matrix"]~div.matrix {
-    display: block;
+.metatype-info {
+    grid-template-columns: 70px 80px 40px 60px 50px 60px 55px 60px;
 }
 
 .karma-summary {
@@ -1004,13 +916,13 @@ input:checked+.slider:before {
 
 .critter-powers {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
 }
 
 .critter-powers-table-header,
 .critter-powers-table {
     display: grid;
-    grid-template-columns: 120px 250px;
+    grid-template-columns: 1fr 2fr;
     background-color: rgba(192, 192, 192, .9);
 }
 
@@ -1028,7 +940,7 @@ input:checked+.slider:before {
     grid-template-columns: 45px 1fr 35px;
 }
 
-.critter-attributes {
+.attributes-critters-table {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     background-color: rgba(192, 192, 192, .9);
@@ -1060,26 +972,26 @@ input:checked+.slider:before {
     grid-template-columns: auto auto;
 }
 
-.char-attributes {
+.attributes-main {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     background-color: rgba(192, 192, 192, .9);
     display: grid;
-    grid-template-columns: 80px 70px 70px 55px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.char-attributes span {
+.attributes-main span {
     padding-left: 3px;
     padding-right: 3px;
 
 }
 
-.char_attributes .header {
+.attributes-main .header {
     text-align: center;
     font-weight: bold;
 }
 
-.char_attributes .label {
+.attributes-main .label {
     color: black;
     align-self: center;
 }
@@ -2596,16 +2508,8 @@ input.enable-fa:not(:checked)~span.show_fa_dice {
     grid-template-columns: 50px 55px;
 }
 
-.vehicle-buttons {
-    background-color: rgba(192, 192, 192, .9);
-    display: grid;
-    grid-template-columns: 650px 1fr;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    padding: 2px;
-    border-top: 2px solid #000000;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
+.vehicle-buttons-old {
+    display: none;
 }
 
 .vehicle-info {
@@ -2879,9 +2783,9 @@ input.enable-fa:not(:checked)~span.show_fa_dice {
     grid-template-columns: 80px 80px 80px 80px;
 }
 
-.gunnery-switch[value="show"]~div.manual-gunnery-mods {
+.manual-gunnery-mods {
     display: grid;
-    grid-template-columns: 120px 120px 120px 120px 120px 120px 120px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .gunneryswitch {
@@ -2915,9 +2819,6 @@ input.enable-fa:not(:checked)~span.show_fa_dice {
 .ic-show,
 .ic-hide,
 .deck-skills-nospec,
-.manual-gunnery-mods,
-.manual-gunnery-show,
-.manual-gunnery-hide,
 .securitysheaf-show,
 .securitysheaf-hide,
 .vehicle-skills-show,
@@ -2933,9 +2834,7 @@ input.enable-fa:not(:checked)~span.show_fa_dice {
 .vehicle-condition-switch[value="show"]~div.vehicle-condition-hide,
 .vehicle-condition-switch[value="hide"]~div.vehicle-condition-show,
 .rc-condition-switch[value="show"]~div.rc-condition-hide,
-.rc-condition-switch[value="hide"]~div.rc-condition-show,
-.gunnery-switch[value="show"]~div.manual-gunnery-hide,
-.gunnery-switch[value="hide"]~div.manual-gunnery-show {
+.rc-condition-switch[value="hide"]~div.rc-condition-show {
     display: block;
 }
 
@@ -3111,7 +3010,7 @@ input.enable-fa:not(:checked)~span.show_fa_dice {
 .karma-pool header,
 .reaction header,
 .reaction-spirit header,
-.char_attributes header,
+.main-attributes header,
 .matrix-intruder-tally header,
 .securitytally header,
 .vehicles-table header,
